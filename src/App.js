@@ -2,7 +2,6 @@ import { Component } from 'react';
 
 import Section from './components/Section';
 import FeedbackOptions from './components/FeedbackOptions';
-import Notification from './components/Notification';
 import Statistics from './components/Statistics';
 
 export default class App extends Component {
@@ -40,7 +39,6 @@ export default class App extends Component {
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions clickGood={this.hangleAdd} />
-          <Notification message="No feedback given" />
         </Section>
 
         <Statistics
