@@ -11,16 +11,10 @@ export default class App extends Component {
     bad: 0,
   };
 
-  hangleAdd = ev => {
-    if (ev.target.id === 'good') {
-      this.setState(prevState => ({ good: prevState.good + 1 }));
-    } else if (ev.target.id === 'neutral') {
-      this.setState(prevState => ({
-        neutral: prevState.neutral + 1,
-      }));
-    } else if (ev.target.id === 'bad') {
-      this.setState(prevState => ({ bad: prevState.bad + 1 }));
-    }
+  handleIncrementFeedback = option => {
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
   };
 
   countTotalFeedback = () => {
@@ -38,11 +32,15 @@ export default class App extends Component {
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedbackOptions clickGood={this.hangleAdd} />
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onClick={this.handleIncrementFeedback}
+          />
         </Section>
-
         <Statistics
-          prop={this.state}
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
           total={this.countTotalFeedback()}
           positivePercentage={this.countPositiveFeedbackPercentage()}
         />
